@@ -4,3 +4,5 @@ xcuserdata
 *.xcodeproj
 .DS_Store
 .swiftpm
+images
+temp
