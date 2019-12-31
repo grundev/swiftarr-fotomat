@@ -110,15 +110,6 @@
         }
       },
       {
-        "package": "SwiftImageMagick",
-        "repositoryURL": "https://github.com/grundoon/SwiftImageMagick",
-        "state": {
-          "branch": "master",
-          "revision": "0e22c9e5ec70874ad7cb5b63b8222b136955dc5f",
-          "version": null
-        }
-      },
-      {
         "package": "TemplateKit",
         "repositoryURL": "https://github.com/vapor/template-kit.git",
         "state": {
