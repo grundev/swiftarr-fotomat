@@ -10,13 +10,13 @@ final class FotomatTests: XCTestCase {
     // set properties
     var app: Application!
     
-    /// Reset databases, create testable app instance and connect it to database.
+    /// Repopulate the testimages/ subdirectory and create testable app instance.
     override func setUp() {
-//        try! Application.reset()
+        try! Application.reset()
         app = try! Application.testable()
     }
     
-    /// Release database connection, then shut down the app.
+    /// Shut down the app.
     override func tearDown() {
         try? app.syncShutdownGracefully()
         super.tearDown()
@@ -299,25 +299,6 @@ final class FotomatTests: XCTestCase {
         
         // test png
         imageFile = "test-png"
-        imagePath = directoryConfig.workDir.appending("testimages/").appending(imageFile)
-        imageURL = URL(fileURLWithPath: imagePath)
-        imageData = ImageData(
-            destDir: "images/twitarr/",
-            imageURL: imageURL,
-            height: 100,
-            watermark: "@grundoon\nJoCo Cruise 2020",
-            gravity: nil
-        )
-        response = try app.getResponse(
-            from: "/process/",
-            method: .POST,
-            headers: HTTPHeaders(),
-            body: imageData
-        )
-        XCTAssertTrue(response.http.status.code == 200, "should be 200 OK")
-
-        // test gif
-        imageFile = "test-gif"
         imagePath = directoryConfig.workDir.appending("testimages/").appending(imageFile)
         imageURL = URL(fileURLWithPath: imagePath)
         imageData = ImageData(

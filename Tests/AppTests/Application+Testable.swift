@@ -23,13 +23,28 @@ extension Application {
         return app
     }
     
-    /// Resets the application's test database to a clean state.
-    /// Use prior to running any test.
+    /// Resets the application's testimages/ subdirectory.
     static func reset() throws {
-        let revertEnviroment = ["vapor", "revert", "--all", "-y"]
-        try Application.testable(envArgs: revertEnviroment).asyncRun().wait()
-        let migrateEnvironment = ["vapor", "migrate", "-y"]
-        try Application.testable(envArgs: migrateEnvironment).asyncRun().wait()
+        let seedsDir = (DirectoryConfig.detect().workDir).appending("seeds/")
+        let testimagesDir = (DirectoryConfig.detect().workDir).appending("testimages/")
+        if !FileManager.default.fileExists(atPath: testimagesDir.appending("test-gif")) {
+            try FileManager.default.copyItem(
+                atPath: seedsDir.appending("test-gif"),
+                toPath: testimagesDir.appending("test-gif")
+            )
+        }
+        if !FileManager.default.fileExists(atPath: testimagesDir.appending("test-jpg")) {
+            try FileManager.default.copyItem(
+                atPath: seedsDir.appending("test-jpg"),
+                toPath: testimagesDir.appending("test-jpg")
+            )
+        }
+        if !FileManager.default.fileExists(atPath: testimagesDir.appending("test-png")) {
+            try FileManager.default.copyItem(
+                atPath: seedsDir.appending("test-png"),
+                toPath: testimagesDir.appending("test-png")
+            )
+        }
     }
     
     // MARK: - Return Responses
