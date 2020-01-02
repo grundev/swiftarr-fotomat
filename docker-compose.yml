@@ -1,0 +1,12 @@
+version: '3'
+services:
+  fotomat:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: fotomat
+    ports:
+      - 8082:8082
+    volumes:
+      - ./images:/app/images
+      - ./temp/:/app/temp
