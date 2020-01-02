@@ -27,6 +27,9 @@ extension Application {
     static func reset() throws {
         let seedsDir = (DirectoryConfig.detect().workDir).appending("seeds/")
         let testimagesDir = (DirectoryConfig.detect().workDir).appending("testimages/")
+        if !FileManager().fileExists(atPath: testimagesDir) {
+            try FileManager().createDirectory(atPath: testimagesDir, withIntermediateDirectories: true)
+        }
         if !FileManager.default.fileExists(atPath: testimagesDir.appending("test-gif")) {
             try FileManager.default.copyItem(
                 atPath: seedsDir.appending("test-gif"),
