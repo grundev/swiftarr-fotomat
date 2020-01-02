@@ -1,0 +1,10 @@
+.git
+.build
+DerivedData
+Package.resolved
+*.xcodeproj
+Dockerfile
+docker-compose.yml
+LICENSE
+README.md
+testimages
